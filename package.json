@@ -1,0 +1,7 @@
+{
+  "name": "mathlab-ai-grading",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {"start": "node mathlab_server.js"},
+  "engines": {"node": ">=20"}
+}
