@@ -89,7 +89,7 @@ btn.addEventListener('click',async function(){
 var name=document.getElementById('msName').value.trim(),file=document.getElementById('msPhoto').files[0],q=document.querySelector('#msQuestion img');
 if(!name||!file||!q||!q.src){out.textContent='اكتب اسم الطالب وارفع صورة الحل، وجهّز السؤال أولاً.';return}
 btn.disabled=true;out.textContent='جاري قراءة الصورة وتصحيح الخطوات...';
-try{var ans=await compressed(file);var res=await fetch(('https://shrill-fire-cfe3.ahme190046.workers.dev', وع{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({answer:ans,question:q.src})});var d=await res.json();if(!res.ok)throw new Error(d.error||'فشل التصحيح');
+try{var ans=await compressed(file);var res=await fetch('https://shrill-fire-cfe3.ahme190046.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({answer:ans,question:q.src})});var d=await res.json();if(!res.ok)throw new Error(d.error||'فشل التصحيح');
 var html='<div style="background:#eef4ff;padding:14px;border-radius:10px"><strong>'+(d.grade===null||d.grade===undefined?'الدرجة تحتاج مراجعة':'النتيجة المبدئية: '+esc(d.grade)+' من 10')+'</strong><p>'+esc(d.summary)+'</p>';
 (d.steps||[]).forEach(function(st,i){html+='<p><b>الخطوة '+(i+1)+': '+esc(st.step)+'</b> — '+esc(st.status)+'<br>'+esc(st.feedback)+'</p>'});if(d.needs_review)html+='<strong>يحتاج مراجعة المدرّس بسبب عدم وضوح أو شك في بعض الخطوات.</strong>';html+='</div>';out.innerHTML=html;
 }catch(e){out.textContent='تعذر التصحيح: '+e.message+'. التصحيح يحتاج فتح المختبر من الموقع المرتبط بخدمة الذكاء الاصطناعي، وليس من ملف HTML وحده.'}finally{btn.disabled=false}
