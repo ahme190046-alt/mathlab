@@ -78,7 +78,7 @@ grade.addEventListener('click',function(){
  try{localStorage.setItem('mathlab_v5_'+el('kind').value+'_'+el('page').value+'_'+el('number').value+'_'+name,JSON.stringify(data))}catch(e){out.insertAdjacentHTML('beforeend','<p>النتيجة ظاهرة، لكن هذا العارض يمنع الحفظ الدائم. صوّر الشاشة للاحتفاظ بها.</p>')}
  out.scrollIntoView({behavior:'smooth',block:'nearest'});
 });
-})();</script><section class="card" id="aiPanel" style="max-width:920px;margin:12px auto;display:none"><h2>التصحيح الذكي للخطوات</h2><p class="muted">بعد رفع صورة الحل، اضغط تصحيح. تظهر النتيجة للطالب مباشرة. النتيجة آلية وقد تحتاج مراجعة المدرّس، خصوصاً إذا كانت الكتابة غير واضحة.</p><button type="button" id="aiGrade">تصحيح الحل تلقائياً</button><div id="aiResult" aria-live="polite" style="margin-top:12px"></div></section>
+})();</script><section class="card" id="aiPanel" style="max-width:920px;margin:12px auto;display:block"><h2>التصحيح الذكي للخطوات</h2><p class="muted">بعد رفع صورة الحل، اضغط تصحيح. تظهر النتيجة للطالب مباشرة. النتيجة آلية وقد تحتاج مراجعة المدرّس، خصوصاً إذا كانت الكتابة غير واضحة.</p><button type="button" id="aiGrade">تصحيح الحل تلقائياً</button><div id="aiResult" aria-live="polite" style="margin-top:12px"></div></section>
 <script>(function(){'use strict';
 var panel=document.getElementById('aiPanel'),btn=document.getElementById('aiGrade'),out=document.getElementById('aiResult');
 function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
